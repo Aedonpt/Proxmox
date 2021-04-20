@@ -57,29 +57,6 @@ docker swarm init &>/dev/null
 docker stack deploy --compose-file=/agent-stack.yml portainer-agent &>/dev/null
 docker service ls &>/dev/null
 
-# Install Portainer
-#msg "Installing Portainer..."
-#FOLDER_PORTAINER='/docker/portainer'
-#mkdir -p $(dirname $FOLDER_PORTAINER)
-#docker run -d \
-#  -p 8000:8000 \
-#  -p 9000:9000 \
-#  --label com.centurylinklabs.watchtower.enable=true \
-#  --name=portainer \
-#  --restart=always \
-#  -v /var/run/docker.sock:/var/run/docker.sock \
-#  -v /docker/portainer:/data \
-#  portainer/portainer-ce &>/dev/null
-
-# Install Watchtower
-msg "Installing Watchtower..."
-docker run -d \
-  --name watchtower \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  containrrr/watchtower \
-  --cleanup \
-  --label-enable &>/dev/null
-
 # Install VSCode
 msg "Installing VSCode..."
 FOLDER_VSCODE='/docker/vscode'
@@ -107,6 +84,15 @@ docker run -d \
   -p 80:80 -p 5055:5055 \
   -e ADMIN_TOKEN=RootPassword \
   bitwardenrs/server:latest &>/dev/null
+  
+# Install Watchtower
+msg "Installing Watchtower..."
+docker run -d \
+  --name watchtower \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower \
+  --cleanup \
+  --label-enable &>/dev/null
 
 # Customize container
 msg "Customizing container..."

@@ -81,7 +81,7 @@ docker run -d \
   -v /docker/bitwarden:/data/ \
   -v /etc/timezone:/etc/timezone:ro \
   -v /etc/localtime:/etc/localtime:ro \
-  -p 80:80 -p 5055:5055 \
+  -p 80:80 -p 3012:3012 \
   -e ADMIN_TOKEN=RootPassword \
   bitwardenrs/server:latest &>/dev/null
   

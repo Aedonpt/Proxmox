@@ -171,6 +171,7 @@ pct exec $CTID /setup.sh
 IP=$(pct exec $CTID ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2}')
 info "Successfully created LXC to $CTID."
 msg "
-Portainer Endpoint: ${IP}:9001
 Enjoy! 
+Portainer Endpoint: http://${IP}:9001
+			VSCode: http://${IP}:8443 
 "

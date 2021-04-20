@@ -65,9 +65,7 @@ TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
 # Download setup script
-wget -qL https://github.com/Aedonpt/Proxmox/raw/main/Heimdall/setup.sh
-wget -qL https://downloads.portainer.io/agent-stack.yml
-
+wget -qL https://github.com/Aedonpt/Proxmox/raw/main/Portainer_only/setup.sh
 # Detect modules and automatically load at boot
 load_module aufs
 load_module overlay
@@ -139,7 +137,7 @@ else
   mkfs.ext4 $(pvesm path $ROOTFS) &>/dev/null
 fi
 ARCH=$(dpkg --print-architecture)
-HOSTNAME=template
+HOSTNAME=Portainer
 TEMPLATE_STRING="local:vztmpl/${TEMPLATE}"
 pct create $CTID $TEMPLATE_STRING -arch $ARCH -features nesting=1 \
   -hostname $HOSTNAME -net0 name=eth0,bridge=vmbr0,ip=dhcp -onboot 1 \
@@ -153,7 +151,8 @@ lxc.cap.drop:
 EOF
 
 # Set container description
-pct set $CTID -description "Debian with Docker"
+pct set $CTID -description "Access Portainer interface using the following URL.
+http://<IP_ADDRESS>:9000"
 
 # Set container timezone to match host
 MOUNT=$(pct mount $CTID | cut -d"'" -f 2)
@@ -164,13 +163,14 @@ pct unmount $CTID && unset MOUNT
 msg "Starting LXC container..."
 pct start $CTID
 pct push $CTID setup.sh /setup.sh -perms 755
-pct push $CTID agent-stack.yml /agent-stack.yml -perms 755
 pct exec $CTID /setup.sh
 
 # Get network details and show completion message
 IP=$(pct exec $CTID ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2}')
-info "Successfully created LXC to $CTID."
+info "Successfully created Portainer LXC to $CTID."
 msg "
-Portainer Endpoint: ${IP}:9001
-Enjoy! 
+Enjoy
+      Portainer: http://${IP}:9000
+         VSCode: http://${IP}:8443
+      
 "

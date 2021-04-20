@@ -65,7 +65,8 @@ TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
 # Download setup script
-wget -qL https://github.com/Aedonpt/Proxmox/raw/main/Portainer_only/setup.sh
+wget -qL https://github.com/Aedonpt/Proxmox/raw/main/Portainer/setup.sh
+
 # Detect modules and automatically load at boot
 load_module aufs
 load_module overlay

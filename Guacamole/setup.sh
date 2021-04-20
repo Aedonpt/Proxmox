@@ -80,13 +80,13 @@ docker run -d \
   --cleanup \
   --label-enable &>/dev/null
 
-# Install Watchtower
+# Install Guacamole
 msg "Installing Guacamole"
 docker run -d \
   --name=guacd \
   -p 4822:4822 \
   --restart unless-stopped \
-  ghcr.io/linuxserver/guacd
+  ghcr.io/linuxserver/guacd &>/dev/null
 
 # Install Heimdall
 #msg "Installing Heimdall"

@@ -164,6 +164,7 @@ pct unmount $CTID && unset MOUNT
 msg "Starting LXC container..."
 pct start $CTID
 pct push $CTID setup.sh /setup.sh -perms 755
+pct push $CTID agent-stack.yml /agent-stack.yml -perms 755
 pct exec $CTID /setup.sh
 
 # Get network details and show completion message

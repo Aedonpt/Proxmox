@@ -65,7 +65,7 @@ TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
 # Download setup script
-wget -qL https://github.com/Aedonpt/Proxmox/raw/main/BitwardenRS/setup.sh
+wget -qL https://github.com/Aedonpt/Proxmox/raw/main/Heimdall/setup.sh
 wget -qL https://downloads.portainer.io/agent-stack.yml
 
 # Detect modules and automatically load at boot

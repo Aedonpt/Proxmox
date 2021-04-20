@@ -71,9 +71,6 @@ docker service ls &>/dev/null
 #  -v /docker/portainer:/data \
 #  portainer/portainer-ce &>/dev/null
 
-# install Portainer Agent
-msg "Installing PortainerAgent"
-
 # Install Watchtower
 msg "Installing Watchtower..."
 docker run -d \

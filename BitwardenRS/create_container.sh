@@ -153,7 +153,6 @@ EOF
 
 # Set container description
 pct set $CTID -description "Access BitwardenRS interface using the following URL.
-
 http://<IP_ADDRESS>:80"
 
 # Set container timezone to match host
@@ -171,9 +170,7 @@ pct exec $CTID /setup.sh
 IP=$(pct exec $CTID ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2}')
 info "Successfully created BitwardenRS LXC to $CTID."
 msg "
-
-Enjoy
-      VSCode: http://${IP}:8443
-      BitwardenRS: http://${IP}:80
-
+BitwardenRS is reachable by going to the following URLs.
+      http://${IP}:80
+      http://${HOSTNAME}.local:80
 "

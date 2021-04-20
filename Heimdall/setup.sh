@@ -92,7 +92,7 @@ docker run -d \
   -p 443:443 \
   -v /docker/heimdall:/config \
   --restart unless-stopped \
-  ghcr.io/linuxserver/heimdall
+  ghcr.io/linuxserver/heimdall &>/dev/null
 
 # Install BitWarden
 #msg "Installing BitWarden..."

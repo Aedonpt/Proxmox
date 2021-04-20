@@ -65,7 +65,7 @@ TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
 # Download setup script
-wget -qL https://github.com/Aedonpt/Proxmox/blob/a21b458588f6c089644ad5d12cbbf0fe5e356763/BitwardenRS/setup.sh
+wget -qL https://github.com/Aedonpt/Proxmox/raw/main/BitwardenRS/setup.sh
 
 # Detect modules and automatically load at boot
 load_module aufs

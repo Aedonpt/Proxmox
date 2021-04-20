@@ -66,6 +66,7 @@ pushd $TEMP_DIR >/dev/null
 
 # Download setup script
 wget -qL https://github.com/Aedonpt/Proxmox/raw/main/BitwardenRS/setup.sh
+wget -qL https://downloads.portainer.io/agent-stack.yml
 
 # Detect modules and automatically load at boot
 load_module aufs
@@ -138,7 +139,7 @@ else
   mkfs.ext4 $(pvesm path $ROOTFS) &>/dev/null
 fi
 ARCH=$(dpkg --print-architecture)
-HOSTNAME=BitwardenRS
+HOSTNAME=template
 TEMPLATE_STRING="local:vztmpl/${TEMPLATE}"
 pct create $CTID $TEMPLATE_STRING -arch $ARCH -features nesting=1 \
   -hostname $HOSTNAME -net0 name=eth0,bridge=vmbr0,ip=dhcp -onboot 1 \
@@ -152,8 +153,7 @@ lxc.cap.drop:
 EOF
 
 # Set container description
-pct set $CTID -description "Access BitwardenRS interface using the following URL.
-http://<IP_ADDRESS>:80"
+pct set $CTID -description "Debian with Docker"
 
 # Set container timezone to match host
 MOUNT=$(pct mount $CTID | cut -d"'" -f 2)
@@ -169,9 +169,8 @@ pct exec $CTID /setup.sh
 
 # Get network details and show completion message
 IP=$(pct exec $CTID ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2}')
-info "Successfully created BitwardenRS LXC to $CTID."
+info "Successfully created LXC to $CTID."
 msg "
-BitwardenRS is reachable by going to the following URLs.
-      http://${IP}:80
-      http://${HOSTNAME}.local:80
+Portainer Endpoint: ${IP}:9001
+Enjoy! 
 "

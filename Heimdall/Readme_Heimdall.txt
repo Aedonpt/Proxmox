@@ -1,1 +1,0 @@
-bash -c "$(wget -qLO - https://github.com/Aedonpt/Proxmox/raw/main/Heimdall/create_container.sh)

@@ -4,19 +4,21 @@ Credits to @whiskerz007 and @Sthopeless (my mentor)
 Working:
 
 1 - BitwardenRS
-2 - Guacamole
+2 - Portainer
 3 - Heimdall
-4 - Portainer
+
 
 Not tested yet
 
-PiHole
-Unifi Controller
+PiHole;
+Guacamole;
+Unifi;
+Controller;
 
 Next intended to be covered
 
-HomeAssistant
-Swag
-Nginx
-Nextcloud
-MariaDB
+HomeAssistant;
+Swag;
+Nginx;
+Nextcloud;
+MariaDB;

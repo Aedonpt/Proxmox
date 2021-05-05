@@ -11,7 +11,7 @@ Working:
 Not tested yet
 
 PiHole;
-Guacamole;
+Guacamole (missing client, DB, network);
 Unifi;
 Controller;
 
